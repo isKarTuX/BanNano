@@ -1,0 +1,6 @@
+.env
+venv/
+__pycache__/
+*.pyc
+model/fruit_classifier.keras
+.DS_Store

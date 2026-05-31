@@ -1,0 +1,23 @@
+{
+  "name": "FruitScan - Clasificador IA de Frutas",
+  "short_name": "FruitScan",
+  "description": "Clasificador inteligente de control de calidad para frutas usando IA. Detecta frutas frescas y dañadas con mapa de calor Grad-CAM.",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0f172a",
+  "theme_color": "#22c55e",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
