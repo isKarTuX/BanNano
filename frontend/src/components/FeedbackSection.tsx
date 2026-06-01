@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/select"
 import { CLASS_LABELS } from "@/types"
 import { cn } from "@/lib/utils"
+import { getFruitLabelEs } from "@/lib/fruitLabels"
 
 type FeedbackState = "voting" | "correcting" | "submitted"
 
@@ -166,17 +167,14 @@ export function FeedbackSection({
                   </div>
                   {CLASS_LABELS.filter((c) => c.startsWith("Fresh_")).map(
                     (label) => (
-                      <SelectItem 
-                        key={label} 
+                      <SelectItem
+                        key={label}
                         value={label}
                         className="text-xs font-mono cursor-pointer"
                       >
                         <span className="flex items-center gap-2">
                           <span className="h-2 w-2 bg-[#77b8a1] border border-[#77b8a1]/50 shadow-pixel-sm" />
-                          {label.replace("Fresh_Fresh", "").replace("Fresh_", "")}
-                          <span className="text-[10px] text-muted-foreground ml-1 uppercase">
-                            - Fresca
-                          </span>
+                          {getFruitLabelEs(label)}
                         </span>
                       </SelectItem>
                     )
@@ -188,17 +186,14 @@ export function FeedbackSection({
                   </div>
                   {CLASS_LABELS.filter((c) => c.startsWith("Rotten_")).map(
                     (label) => (
-                      <SelectItem 
-                        key={label} 
+                      <SelectItem
+                        key={label}
                         value={label}
                         className="text-xs font-mono cursor-pointer"
                       >
                         <span className="flex items-center gap-2">
                           <span className="h-2 w-2 bg-[#d95c5c] border border-[#d95c5c]/50 shadow-pixel-sm" />
-                          {label.replace("Rotten_Rotten", "").replace("Rotten_", "")}
-                          <span className="text-[10px] text-muted-foreground ml-1 uppercase">
-                            - Danada
-                          </span>
+                          {getFruitLabelEs(label)}
                         </span>
                       </SelectItem>
                     )

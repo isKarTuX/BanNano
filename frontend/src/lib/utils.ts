@@ -1,5 +1,6 @@
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
+import { getFruitLabelEs, isRotten as checkRotten } from "./fruitLabels"
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -9,14 +10,11 @@ export function formatConfidence(value: number): string {
   return `${(value * 100).toFixed(1)}%`
 }
 
+/** @deprecated Use getFruitLabelEs from ./fruitLabels instead */
 export function getFruitLabel(className: string): string {
-  const noPrefix = className
-    .replace(/^Fresh_Fresh/, "")
-    .replace(/^Rotten_Rotten/, "")
-  const words = noPrefix.replace(/([A-Z])/g, " $1").trim()
-  return words || className
+  return getFruitLabelEs(className)
 }
 
 export function isRotten(className: string): boolean {
-  return className.startsWith("Rotten_")
+  return checkRotten(className)
 }

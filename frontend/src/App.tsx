@@ -9,6 +9,7 @@ import { AboutSection } from "@/components/AboutSection"
 import { PredictionHistory } from "@/components/PredictionHistory"
 import { ThemeToggle } from "@/components/ThemeToggle"
 import SecretPage from "@/components/SecretPage"
+import { SupportedFruits } from "@/components/SupportedFruits"
 import { predictFruit, submitFeedback } from "@/api"
 import { usePredictionHistory } from "@/hooks/usePredictionHistory"
 import { useEasterEgg } from "@/hooks/useEasterEgg"
@@ -230,6 +231,9 @@ export default function App() {
                 <div className="h-0.5 w-12 bg-primary/30" />
               </div>
             </div>
+
+            {/* Lista de frutas soportadas */}
+            <SupportedFruits />
 
             <ImageUploader
               key={resetKey}
