@@ -1,22 +1,19 @@
 {
-  "name": "FruitScan - Clasificador IA de Frutas",
-  "short_name": "FruitScan",
-  "description": "Clasificador inteligente de control de calidad para frutas usando IA. Detecta frutas frescas y dañadas con mapa de calor Grad-CAM.",
+  "name": "BanNano - IA Clasificador de Frutas",
+  "short_name": "BanNano",
+  "description": "Clasificador inteligente de frutas con IA. Detecta frutas frescas y danadas con mapa de calor Grad-CAM usando EfficientNetV2.",
   "start_url": "/",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#0f172a",
-  "theme_color": "#22c55e",
+  "background_color": "#1a1823",
+  "theme_color": "#8a79ab",
+  "categories": ["utilities", "productivity"],
+  "lang": "es",
   "icons": [
     {
-      "src": "/icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "/icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
+      "src": "/banano-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
       "purpose": "any maskable"
     }
   ]

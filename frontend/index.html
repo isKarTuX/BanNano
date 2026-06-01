@@ -2,16 +2,41 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <meta name="theme-color" content="#0f172a" />
+    <link rel="icon" type="image/svg+xml" href="/banano-icon.svg" />
+    <link rel="apple-touch-icon" href="/banano-icon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#ede9f5" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1a1823" media="(prefers-color-scheme: dark)" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="apple-mobile-web-app-title" content="FruitScan" />
-    <link rel="apple-touch-icon" href="/icon-192.png" />
-    <title>FruitScan - Clasificador IA de Frutas</title>
+    <meta name="apple-mobile-web-app-title" content="BanNano" />
+    <meta name="description" content="BanNano - Clasificador IA de frutas estilo retro 8-bit. Analiza frutas y verduras con inteligencia artificial usando EfficientNetV2 y Grad-CAM." />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://bannano.vercel.app" />
+    <meta property="og:title" content="BanNano - IA Clasificador de Frutas" />
+    <meta property="og:description" content="Analiza frutas y verduras con IA. Detecta si estan frescas o danadas con visualizacion Grad-CAM estilo retro 8-bit." />
+    <meta property="og:image" content="https://bannano.vercel.app/banano-icon.svg" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://bannano.vercel.app" />
+    <meta property="twitter:title" content="BanNano - IA Clasificador de Frutas" />
+    <meta property="twitter:description" content="Analiza frutas y verduras con IA. Detecta si estan frescas o danadas con visualizacion Grad-CAM estilo retro 8-bit." />
+    <meta property="twitter:image" content="https://bannano.vercel.app/banano-icon.svg" />
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+    
+    <!-- Fuentes Pixel/Retro -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Lora:wght@400;700&display=swap" rel="stylesheet" />
+    
+    <title>BanNano - IA Clasificador de Frutas</title>
   </head>
-  <body class="bg-slate-950 text-slate-50 antialiased">
+  <body class="antialiased">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

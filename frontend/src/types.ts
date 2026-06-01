@@ -7,11 +7,6 @@ export interface PredictionResult {
   heatmap_base64?: string
 }
 
-export interface FeedbackPayload {
-  file: File
-  correct_label: string
-}
-
 export const CLASS_LABELS = [
   "Fresh_FreshApple",
   "Fresh_FreshBanana",

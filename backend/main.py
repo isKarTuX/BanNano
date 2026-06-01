@@ -232,11 +232,19 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
+# CORS: no usar allow_credentials=True con allow_origins=["*"] — los navegadores lo rechazan.
+# En produccion, reemplazar los origins por los dominios reales del frontend.
+_origins = os.getenv("CORS_ORIGINS", "*").split(",")
+if _origins == ["*"]:
+    _allow_credentials = False
+else:
+    _allow_credentials = True
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
+    allow_origins=_origins,
+    allow_credentials=_allow_credentials,
+    allow_methods=["GET", "POST"],
     allow_headers=["*"],
 )
 
@@ -271,12 +279,16 @@ async def health():
         )
 
 
+MAX_FILE_SIZE = 15 * 1024 * 1024  # 15 MB
+
 @app.post("/predict")
 async def predict(file: UploadFile = File(...)):
     if not file.content_type or not file.content_type.startswith("image/"):
         raise HTTPException(400, "El archivo debe ser una imagen (JPEG, PNG, etc.).")
 
     contents = await file.read()
+    if len(contents) > MAX_FILE_SIZE:
+        raise HTTPException(413, f"Imagen demasiado grande. Maximo {MAX_FILE_SIZE // (1024*1024)}MB.")
 
     try:
         original_bgr, model_input = preprocess_image(contents)

@@ -2,12 +2,305 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --card: #ffffff;
+  --ring: #8a79ab;
+  --input: #eae7f0;
+  --muted: #dcd9e3;
+  --accent: #e6a5b8;
+  --border: #cec9d9;
+  --radius: 0px;
+  --chart-1: #8a79ab;
+  --chart-2: #e6a5b8;
+  --chart-3: #77b8a1;
+  --chart-4: #f0c88d;
+  --chart-5: #a0bbe3;
+  --popover: #ffffff;
+  --primary: #8a79ab;
+  --sidebar: #e6e0f2;
+  --spacing: 0.25rem;
+  --font-sans: "VT323", "Geist", monospace;
+  --font-mono: "VT323", "Geist Mono", monospace;
+  --font-pixel: "Press Start 2P", cursive;
+  --font-serif: "Lora", Georgia, serif;
+  --secondary: #dfd9ec;
+  --background: #ede9f5;
+  --foreground: #3d3c4f;
+  --destructive: #d95c5c;
+  --shadow-blur: 0px;
+  --shadow-color: #2d2b3a;
+  --sidebar-ring: #8a79ab;
+  --shadow-spread: 0px;
+  --letter-spacing: 0em;
+  --shadow-opacity: 0.15;
+  --sidebar-accent: #e6a5b8;
+  --sidebar-border: #d7d2e0;
+  --card-foreground: #3d3c4f;
+  --shadow-offset-x: 4px;
+  --shadow-offset-y: 4px;
+  --sidebar-primary: #8a79ab;
+  --muted-foreground: #6b6880;
+  --accent-foreground: #4b2e36;
+  --popover-foreground: #3d3c4f;
+  --primary-foreground: #f8f7fa;
+  --sidebar-foreground: #3d3c4f;
+  --secondary-foreground: #3d3c4f;
+  --destructive-foreground: #f8f7fa;
+  --sidebar-accent-foreground: #4b2e36;
+  --sidebar-primary-foreground: #f8f7fa;
+
+  /* Retro specific */
+  --pixel-border-width: 2px;
+  --pixel-shadow-color: #3d3c4f;
+}
+
+.dark {
+  --card: #232030;
+  --ring: #a995c9;
+  --input: #2a273a;
+  --muted: #242031;
+  --accent: #372e3f;
+  --border: #302c40;
+  --chart-1: #a995c9;
+  --chart-2: #f2b8c6;
+  --chart-3: #77b8a1;
+  --chart-4: #f0c88d;
+  --chart-5: #a0bbe3;
+  --popover: #232030;
+  --primary: #a995c9;
+  --sidebar: #16141e;
+  --secondary: #5a5370;
+  --background: #1a1823;
+  --foreground: #e0ddef;
+  --destructive: #e57373;
+  --sidebar-ring: #a995c9;
+  --sidebar-accent: #372e3f;
+  --sidebar-border: #2a273a;
+  --card-foreground: #e0ddef;
+  --sidebar-primary: #a995c9;
+  --muted-foreground: #a09aad;
+  --accent-foreground: #f2b8c6;
+  --popover-foreground: #e0ddef;
+  --primary-foreground: #1a1823;
+  --sidebar-foreground: #e0ddef;
+  --secondary-foreground: #e0ddef;
+  --destructive-foreground: #1a1823;
+  --sidebar-accent-foreground: #f2b8c6;
+  --sidebar-primary-foreground: #1a1823;
+  --shadow-color: #0a0814;
+  --pixel-shadow-color: #0a0814;
+}
+
 @layer base {
   * {
-    @apply border-border;
+    border-color: var(--border);
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
   }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
   body {
-    @apply bg-background text-foreground;
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    font-size: 18px;
+    line-height: 1.4;
+    letter-spacing: 0.02em;
+  }
+  
+  /* Selección de texto estilo retro */
+  ::selection {
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+  }
+  
+  /* Scrollbar retro */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: var(--muted);
+    border: 2px solid var(--border);
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border: 2px solid var(--border);
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--ring);
+  }
+}
+
+@layer components {
+  /* Bordes pixelados con doble borde estilo retro */
+  .pixel-border {
+    position: relative;
+    border: 2px solid var(--border);
+  }
+  .pixel-border::after {
+    content: "";
+    position: absolute;
+    inset: -4px;
+    border: 2px solid var(--primary);
+    pointer-events: none;
+    z-index: -1;
+  }
+  
+  /* Retro box con sombra pixelada */
+  .pixel-box {
+    border: 2px solid var(--border);
+    box-shadow: 
+      4px 4px 0px 0px var(--pixel-shadow-color),
+      inset -2px -2px 0px 0px rgba(0,0,0,0.1);
+  }
+  
+  /* Botón retro con efecto de presión */
+  .pixel-btn {
+    position: relative;
+    border: 2px solid var(--border);
+    box-shadow: 
+      4px 4px 0px 0px var(--pixel-shadow-color);
+    transition: all 0.1s step-end;
+  }
+  .pixel-btn:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 
+      5px 5px 0px 0px var(--pixel-shadow-color);
+  }
+  .pixel-btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: 
+      2px 2px 0px 0px var(--pixel-shadow-color);
+  }
+  
+  /* Texto pixelado para headings */
+  .font-pixel {
+    font-family: var(--font-pixel);
+    line-height: 1.6;
+    letter-spacing: -0.04em;
+  }
+  
+  /* Efecto CRT/Scanlines opcional */
+  .crt-overlay {
+    position: relative;
+  }
+  .crt-overlay::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.03) 2px,
+      rgba(0, 0, 0, 0.03) 4px
+    );
+    pointer-events: none;
+    z-index: 50;
+  }
+  
+  /* Bordes pixelados para imágenes */
+  .retro {
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+  }
+  
+  /* Input retro */
+  .pixel-input {
+    border: 2px solid var(--border);
+    background: var(--card);
+    box-shadow: inset 2px 2px 0px 0px rgba(0,0,0,0.05);
+    transition: all 0.1s step-end;
+  }
+  .pixel-input:focus {
+    border-color: var(--primary);
+    box-shadow: 
+      inset 2px 2px 0px 0px rgba(0,0,0,0.05),
+      0 0 0 2px var(--ring);
+    outline: none;
+  }
+  
+  /* Card retro con doble borde */
+  .pixel-card {
+    border: 2px solid var(--border);
+    box-shadow: 4px 4px 0px 0px var(--pixel-shadow-color);
+    background: var(--card);
+    transition: all 0.1s step-end;
+  }
+  .pixel-card:hover {
+    box-shadow: 5px 5px 0px 0px var(--pixel-shadow-color);
+  }
+  
+  /* Indicador de salud (verde) */
+  .health-good {
+    color: #77b8a1;
+    border-color: #77b8a1;
+  }
+  .health-good-bg {
+    background-color: rgba(119, 184, 161, 0.15);
+    border-color: rgba(119, 184, 161, 0.5);
+  }
+  
+  /* Indicador de daño (rojo) */
+  .health-bad {
+    color: #d95c5c;
+    border-color: #d95c5c;
+  }
+  .health-bad-bg {
+    background-color: rgba(217, 92, 92, 0.15);
+    border-color: rgba(217, 92, 92, 0.5);
+  }
+  
+  /* Animación de cursor parpadeante */
+  .cursor-blink::after {
+    content: "_";
+    animation: blink 1s step-end infinite;
+    color: var(--primary);
+  }
+  
+  /* Estilo de lista retro */
+  .pixel-list li {
+    position: relative;
+    padding-left: 1.5rem;
+  }
+  .pixel-list li::before {
+    content: ">";
+    position: absolute;
+    left: 0;
+    color: var(--primary);
+    font-weight: bold;
+  }
+
+  /* View Transitions API - Transición de tema profesional */
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+  }
+
+  /* El estado anterior permanece como fondo base */
+  ::view-transition-old(root) {
+    z-index: 1;
+  }
+
+  /* El nuevo tema emerge desde el origen del click con clip-path circular */
+  ::view-transition-new(root) {
+    z-index: 2;
+    clip-path: circle(0% at var(--ripple-x, 50%) var(--ripple-y, 50%));
+    animation: theme-reveal 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  @keyframes theme-reveal {
+    to {
+      clip-path: circle(150% at var(--ripple-x, 50%) var(--ripple-y, 50%));
+    }
   }
 }
 
@@ -23,4 +316,112 @@
     );
     background-size: 200% 100%;
   }
+  
+  .text-shadow-pixel {
+    text-shadow:
+      2px 2px 0px var(--shadow-color),
+      -1px -1px 0px var(--shadow-color),
+      1px -1px 0px var(--shadow-color),
+      -1px 1px 0px var(--shadow-color);
+  }
+  
+  .text-shadow-sm {
+    text-shadow: 2px 2px 0px var(--shadow-color);
+  }
+  
+  .border-pixel {
+    border: 2px solid var(--border);
+  }
+  
+  /* Sombras pixeladas utilitarias */
+  .shadow-pixel {
+    box-shadow: 4px 4px 0px 0px var(--pixel-shadow-color);
+  }
+  .shadow-pixel-sm {
+    box-shadow: 2px 2px 0px 0px var(--pixel-shadow-color);
+  }
+  .shadow-pixel-md {
+    box-shadow: 4px 4px 0px 0px var(--pixel-shadow-color);
+  }
+  .shadow-pixel-lg {
+    box-shadow: 6px 6px 0px 0px var(--pixel-shadow-color);
+  }
+  .shadow-pixel-none {
+    box-shadow: none;
+  }
+}
+
+/* === EASTER EGG ANIMATIONS === */
+@keyframes float-up {
+  0% {
+    transform: translateY(0) scale(0.8);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+    transform: translateY(-10vh) scale(1);
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-110vh) scale(0.6);
+    opacity: 0;
+  }
+}
+
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.2;
+    transform: scale(0.8) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2) rotate(180deg);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 2px rgba(244, 63, 94, 0.5));
+  }
+  50% {
+    filter: drop-shadow(0 0 8px rgba(244, 63, 94, 0.8));
+  }
+}
+
+.animate-float-up {
+  animation: float-up linear forwards;
+  will-change: transform, opacity;
+}
+
+.animate-twinkle {
+  animation: twinkle 2s ease-in-out infinite;
+  will-change: opacity, transform;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Animación de balanceo para flores */
+@keyframes sway {
+  0%, 100% {
+    transform: rotate(-3deg) translateY(0);
+  }
+  25% {
+    transform: rotate(3deg) translateY(-2px);
+  }
+  50% {
+    transform: rotate(-2deg) translateY(0);
+  }
+  75% {
+    transform: rotate(4deg) translateY(-1px);
+  }
+}
+
+.animate-sway {
+  animation: sway 4s ease-in-out infinite;
+  transform-origin: bottom center;
+  will-change: transform;
 }
