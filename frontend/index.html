@@ -4,12 +4,17 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/banano-icon.svg" />
     <link rel="apple-touch-icon" href="/banano-icon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
     <meta name="theme-color" content="#ede9f5" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#1a1823" media="(prefers-color-scheme: dark)" />
+    
+    <!-- iOS PWA Meta Tags -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="BanNano" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="BanNano" />
+    
     <meta name="description" content="BanNano - Clasificador IA de frutas estilo retro 8-bit. Analiza frutas y verduras con inteligencia artificial usando EfficientNetV2 y Grad-CAM." />
     
     <!-- Open Graph / Facebook -->
@@ -35,8 +40,126 @@
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Lora:wght@400;700&display=swap" rel="stylesheet" />
     
     <title>BanNano - IA Clasificador de Frutas</title>
+    
+    <!-- Splash Screen Styles - Se muestra mientras carga la app -->
+    <style>
+      /* Reset básico para el splash */
+      #pwa-splash {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      #pwa-splash {
+        position: fixed;
+        inset: 0;
+        z-index: 99999;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: #1a1823;
+        transition: opacity 0.4s ease-out, visibility 0.4s ease-out;
+      }
+      
+      #pwa-splash.hidden {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+      
+      #pwa-splash .splash-icon {
+        width: 120px;
+        height: 120px;
+        margin-bottom: 24px;
+        image-rendering: pixelated;
+        animation: splash-pulse 1.5s ease-in-out infinite;
+      }
+      
+      #pwa-splash .splash-title {
+        font-family: 'Press Start 2P', cursive;
+        font-size: 1.25rem;
+        color: #a995c9;
+        text-align: center;
+        letter-spacing: -0.04em;
+        line-height: 1.6;
+        text-shadow: 2px 2px 0px #0a0814;
+      }
+      
+      #pwa-splash .splash-subtitle {
+        font-family: 'VT323', monospace;
+        font-size: 1.1rem;
+        color: #6b6880;
+        margin-top: 12px;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+      }
+      
+      #pwa-splash .splash-loader {
+        margin-top: 32px;
+        width: 160px;
+        height: 6px;
+        background: #2a273a;
+        border: 2px solid #302c40;
+        position: relative;
+        overflow: hidden;
+      }
+      
+      #pwa-splash .splash-loader-bar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 0%;
+        background: #a995c9;
+        animation: splash-load 1.5s ease-out forwards;
+      }
+      
+      @keyframes splash-pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+      }
+      
+      @keyframes splash-load {
+        0% { width: 0%; }
+        100% { width: 100%; }
+      }
+      
+      /* Modo claro para splash */
+      @media (prefers-color-scheme: light) {
+        #pwa-splash {
+          background: #ede9f5;
+        }
+        #pwa-splash .splash-title {
+          color: #8a79ab;
+          text-shadow: 2px 2px 0px #dcd9e3;
+        }
+        #pwa-splash .splash-subtitle {
+          color: #6b6880;
+        }
+        #pwa-splash .splash-loader {
+          background: #dcd9e3;
+          border-color: #cec9d9;
+        }
+      }
+    </style>
   </head>
   <body class="antialiased">
+    <!-- Splash Screen - Se oculta cuando React carga -->
+    <div id="pwa-splash">
+      <img 
+        src="/banano-icon.svg" 
+        alt="BanNano" 
+        class="splash-icon"
+        aria-hidden="true"
+      />
+      <div class="splash-title">BanNano</div>
+      <div class="splash-subtitle">IA . Calidad . Frutas</div>
+      <div class="splash-loader">
+        <div class="splash-loader-bar"></div>
+      </div>
+    </div>
+    
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

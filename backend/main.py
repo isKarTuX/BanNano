@@ -43,13 +43,14 @@ CLASS_LABELS: list[str] = [
 IMG_SIZE: tuple[int, int] = (224, 224)
 
 # ---------------------------------------------------------------------------
-# Model Loading
+# Model Loading (soporta múltiples versiones)
 # ---------------------------------------------------------------------------
 _model: Optional[tf.keras.Model] = None
+_model_metadata: dict = {}
 
 
 def load_model() -> tf.keras.Model:
-    global _model
+    global _model, _model_metadata
     if _model is not None:
         return _model
 
@@ -74,6 +75,15 @@ def load_model() -> tf.keras.Model:
     logger.info("Cargando modelo: %s", model_path)
     _model = tf.keras.models.load_model(model_path, compile=False)
     logger.info("Modelo cargado. Output shape: %s", _model.output_shape)
+
+    # Cargar metadata si existe
+    meta_path = os.path.join(os.path.dirname(model_path), "model_metadata.json")
+    if os.path.exists(meta_path):
+        import json
+        with open(meta_path) as f:
+            _model_metadata = json.load(f)
+        logger.info("Metadata cargada: %s", _model_metadata.get('model_name', 'unknown'))
+
     return _model
 
 
@@ -271,12 +281,32 @@ async def health():
             "model_loaded": True,
             "num_classes": model.output_shape[-1],
             "model_name": model.name,
+            "model_version": _model_metadata.get("model_name", "unknown"),
+            "architecture": _model_metadata.get("architecture", "unknown"),
         }
     except Exception as e:
         return JSONResponse(
             status_code=503,
             content={"status": "error", "model_loaded": False, "detail": str(e)},
         )
+
+
+@app.get("/model-info")
+async def model_info():
+    """Devuelve metadata del modelo cargado."""
+    try:
+        model = load_model()
+        return {
+            "name": _model_metadata.get("model_name", model.name),
+            "architecture": _model_metadata.get("architecture", "EfficientNetV2-S"),
+            "num_classes": model.output_shape[-1],
+            "class_names": CLASS_LABELS,
+            "input_shape": _model_metadata.get("input_shape", [224, 224, 3]),
+            "preprocessing": _model_metadata.get("preprocessing", "efficientnet_v2.preprocess_input"),
+            "size_mb": _model_metadata.get("size_mb", None),
+        }
+    except Exception as e:
+        raise HTTPException(503, f"Modelo no disponible: {e}")
 
 
 MAX_FILE_SIZE = 15 * 1024 * 1024  # 15 MB

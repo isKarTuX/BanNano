@@ -3,18 +3,26 @@
   "short_name": "BanNano",
   "description": "Clasificador inteligente de frutas con IA. Detecta frutas frescas y danadas con mapa de calor Grad-CAM usando EfficientNetV2.",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#1a1823",
   "theme_color": "#8a79ab",
   "categories": ["utilities", "productivity"],
   "lang": "es",
+  "dir": "ltr",
   "icons": [
     {
       "src": "/banano-icon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "/banano-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
     }
   ]
 }
