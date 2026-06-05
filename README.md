@@ -7,7 +7,7 @@
 
 BanNano es una aplicación web que recibe una fotografía de una fruta o verdura y responde si está **fresca** o **dañada**, mostrando además la **zona de la imagen** en la que el modelo se basó para decidir. Está pensada como una herramienta de apoyo al control de calidad en cadenas de producción, supermercados, centros de acopio o plantas de empaque, donde la inspección visual humana es costosa, lenta y subjetiva.
 
-El nombre viene de *banano* (la fruta con la que empezamos a experimentar) y de la idea de construir algo **nano** en tamaño pero útil en alcance: un sistema pequeño, portable y abierto, entrenado con datos públicos y servido desde la nube.
+El nombre viene de *banano* (la fruta con la que tenemos mejor precision) y de la idea de construir algo **nano** en tamaño pero útil en alcance: un sistema pequeño, portable y abierto, entrenado con datos públicos y servido desde la nube.
 
 ## Enlaces del proyecto
 
@@ -18,7 +18,6 @@ El nombre viene de *banano* (la fruta con la que empezamos a experimentar) y de 
 | Dataset público utilizado (Kaggle) | https://www.kaggle.com/datasets/ulnnproject/food-freshness-dataset |
 | API en Hugging Face Spaces (Docker) | https://mkartux-bannano.hf.space |
 | Modelo entrenado (Hugging Face Hub) | https://huggingface.co/mKartux/BanNano-model |
-| Dataset de correcciones (Hugging Face) | https://huggingface.co/datasets/mKartux/fruit-quality-feedback |
 | Repositorio de código | https://github.com/isKarTuX/BanNano |
 
 ## 1. Planteamiento del problema
@@ -248,10 +247,6 @@ Los cuadernos de trabajo locales, los modelos entrenados (`.keras`, `.tflite`) y
 ## 10. Autores
 
 - **Keyner Ramírez** — modelo, entrenamiento, despliegue del backend.
-- **Mary Hoyos** — diseño de la interfaz, integración frontend-backend, documentación.
+- **Mary Hoyos** — diseño de la interfaz, integración frontend, documentación.
 
 Trabajo realizado en la **Universidad de Córdoba**, en el marco de la asignatura **Aprendizaje Computacional**.
-
-## 11. Licencia y agradecimientos
-
-El código de este repositorio se publica con fines académicos. El dataset utilizado pertenece a su autor original en Kaggle (ver enlace en la sección de datos) y se usa citando la fuente. Agradecemos a la comunidad de TensorFlow, Hugging Face, React y FastAPI, cuyas herramientas hicieron posible este proyecto.
