@@ -5,5 +5,31 @@ dist/
 __pycache__/
 venv/
 .venv/
-*.keras
 .DS_Store
+
+# Modelos entrenados (pesados, viven en Hugging Face)
+*.keras
+*.tflite
+*.h5
+backend/model/
+
+# Notebooks locales (la versión canónica vive en Colab, se enlaza desde README.md)
+*.ipynb
+!hf-space/README.md
+
+# Documentos de trabajo local (no se suben a GitHub).
+# Solo se versionan: README.md, feedback.md, slides.md y hf-space/README.md.
+/[0-9][0-9]_*.md
+/ANALISIS_*.md
+/CORRECCIONES_*.md
+/DOCUMENTACION_COMPLETA.md
+/DOCUMENTACION_*.md
+/NOTAS_*.md
+/banano.txt
+/cat-banbano.svg
+
+# Archivos de sistema / temporales
+*.bak
+*.swp
+*.tmp
+Thumbs.db
