@@ -18,7 +18,7 @@ backend/model/
 !hf-space/README.md
 
 # Documentos de trabajo local (no se suben a GitHub).
-# Solo se versionan: README.md, feedback.md, slides.md y hf-space/README.md.
+# Solo se versionan: README.md, slides.md y hf-space/README.md.
 /[0-9][0-9]_*.md
 /ANALISIS_*.md
 /CORRECCIONES_*.md
@@ -27,6 +27,7 @@ backend/model/
 /NOTAS_*.md
 /banano.txt
 /cat-banbano.svg
+/feedback.md
 
 # Archivos de sistema / temporales
 *.bak
